@@ -6,7 +6,7 @@ import { success, fail } from './index.js'
 
 export const login = async (ctx, next) => {
     const { mobile, password } = ctx.request.body
-    console.log(mobile)
+
     const user = await User.findOne({
         where: {
             mobile

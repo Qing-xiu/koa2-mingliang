@@ -1,0 +1,12 @@
+CREATE TABLE `user_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remard` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `basicPermission` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `advanPermission` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `operateId` int(10) unsigned zerofill NOT NULL COMMENT '操作人用户id',
+  `state` int(11) NOT NULL DEFAULT '1' COMMENT '0 未启用 1已启用 2已删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
