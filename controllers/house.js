@@ -6,7 +6,7 @@ export const getList = async (ctx, next) => {
 
     const { count, rows } = await House.findAndCountAll({
         limit: pageSize * 1,
-        offset: pageNum * pageSize
+        offset: (pageNum - 1) * pageSize
     })
 
     ctx.body = success({

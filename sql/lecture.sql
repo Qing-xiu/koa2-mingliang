@@ -1,0 +1,22 @@
+CREATE TABLE `lecture` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '讲座名称',
+  `info` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '讲座简介',
+  `coverImg` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '封面图',
+  `openTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '开始时间',
+  `startTime` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '开始时间',
+  `endTime` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '结束时间',
+  `cityId` int(11) NOT NULL COMMENT '国家id',
+  `cityStr` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `siteName` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '地点名称',
+  `addressDetail` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '地址详情',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `putawayTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '上架时间',
+  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `state` int(11) NOT NULL DEFAULT '1' COMMENT '状态 0未上架 1已上架  2已下架 3已删除',
+  `detail` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '讲座流程',
+  `operateId` int(10) unsigned zerofill NOT NULL COMMENT '操作人用户id',
+  `historyImgList` varchar(3000) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '往期图片列表',
+  PRIMARY KEY (`id`),
+  KEY `operateId` (`operateId`)
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
