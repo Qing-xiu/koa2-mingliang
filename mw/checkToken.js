@@ -1,7 +1,7 @@
 import { verify } from '../service/auth.js'
 
 export default async (ctx, next) => {
-
+    console.log('checkToken')
     const { authorization } = ctx.headers
     console.log(authorization)
     const [, token] = authorization.split(' ')
