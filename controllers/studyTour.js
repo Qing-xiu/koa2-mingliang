@@ -1,27 +1,19 @@
 import Sequelize from 'sequelize'
 import { success } from './index.js'
-import House from '../db/house.js'
+import StudyTour from '../db/studyTour.js'
 
 const { Op } = Sequelize
 
 export const list = async (ctx, next) => {
-    const { pageSize, pageNum, provinceId, countryId, keyword } = ctx.query
+    const { pageSize, pageNum, keyword } = ctx.query
 
     let query = {
         limit: pageSize * 1,
         offset: (pageNum - 1) * pageSize,
         where: {
-
-        }
-    }
-
-
-    if (provinceId || countryId) {
-        query.where = {
-            [Op.and]: [
-                { provinceId },
-                { countryId }
-            ]
+            state: {
+                [Op.ne]: 3
+            }
         }
     }
 
@@ -31,7 +23,7 @@ export const list = async (ctx, next) => {
         }
     }
 
-    const { count, rows } = await House.findAndCountAll(query)
+    const { count, rows } = await StudyTour.findAndCountAll(query)
 
     ctx.body = success({
         list: rows,
@@ -42,26 +34,26 @@ export const list = async (ctx, next) => {
 export const detail = async (ctx, next) => {
     const { id } = ctx.params
 
-    const house = await House.findByPk(id)
-    ctx.body = success(house)
+    const res = await StudyTour.findByPk(id)
+    ctx.body = success(res)
 }
 
 export const create = async (ctx, next) => {
     const { body } = ctx.request
-    const house = await House.create(body)
-    ctx.body = success(house)
+    const res = await StudyTour.create(body)
+    ctx.body = success(res)
 }
 
 export const update = async (ctx, next) => {
     const { id } = ctx.params
     const { body } = ctx.request
-    const house = await House.update(body, {
+    const res = await StudyTour.update(body, {
         where:  {
             id
         }
     })
 
-    ctx.body = success(house)
+    ctx.body = success(res)
 }
 
 

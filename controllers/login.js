@@ -13,7 +13,6 @@ export const login = async (ctx, next) => {
         }
     })
 
-    console.log(user)
     if (!user) {
         ctx.body = fail(-100, '查无此用户')
         return

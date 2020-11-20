@@ -3,7 +3,7 @@ import KoaJwt from 'koa-jwt'
 import KoaBody from 'koa-body'
 import cors from 'koa2-cors'
 import router from './router/index.js'
-import checkToke from './mw/checkToken.js'
+// import checkToke from './mw/checkToken.js'
 import { test } from './db/index.js'
 
 test()
@@ -26,7 +26,7 @@ app.use(KoaJwt({
     path: [/^\/login/]
 }))
 
-app.use(checkToke)
+// app.use(checkToke)
 
 app.use(router.routes(), router.allowedMethods())
 

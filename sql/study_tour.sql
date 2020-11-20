@@ -1,0 +1,22 @@
+CREATE TABLE `tb_study_tour` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(100) NOT NULL COMMENT '讲座名称',
+  `info` varchar(500) NOT NULL COMMENT '讲座简介',
+  `coverImg` varchar(300) NOT NULL COMMENT '封面图',
+  `startTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '开始时间',
+  `endTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '结束时间',
+  `fee` int NOT NULL COMMENT '考察费用',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `putawayTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '上架时间',
+  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `countryId` int NOT NULL COMMENT '国家id',
+  `countryStr` varchar(10) NOT NULL,
+  `provinceId` int NOT NULL COMMENT '省id 国外对应州id',
+  `provinceStr` varchar(10) NOT NULL,
+  `detail` text NOT NULL COMMENT '讲座流程',
+  `operateId` int(10) unsigned zerofill NOT NULL COMMENT '操作人用户id',
+  `state` int NOT NULL DEFAULT '1' COMMENT '状态 0未上架 1已上架  2已下架 3已删除',
+  `historyImgList` varchar(3000) NOT NULL DEFAULT '' COMMENT '往期图片列表',
+  PRIMARY KEY (`id`),
+  KEY `operateId` (`operateId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

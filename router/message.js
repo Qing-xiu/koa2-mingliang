@@ -1,8 +1,8 @@
 import Router from 'koa-router'
-import { detail, list, create, update, } from '../controllers/house.js'
+import { detail, list, create, update, } from '../controllers/message.js'
 
 const router = new Router({
-    prefix: '/house'
+    prefix: '/message'
 })
 
 router.get('/', list)

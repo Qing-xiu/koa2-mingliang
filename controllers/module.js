@@ -1,37 +1,24 @@
 import Sequelize from 'sequelize'
 import { success } from './index.js'
-import House from '../db/house.js'
+import Module from '../db/module.js'
 
 const { Op } = Sequelize
 
 export const list = async (ctx, next) => {
-    const { pageSize, pageNum, provinceId, countryId, keyword } = ctx.query
+    const { pageSize, pageNum, type } = ctx.query
 
     let query = {
         limit: pageSize * 1,
         offset: (pageNum - 1) * pageSize,
         where: {
-
+            type,
+            state: {
+                [Op.ne]: 3
+            }
         }
     }
 
-
-    if (provinceId || countryId) {
-        query.where = {
-            [Op.and]: [
-                { provinceId },
-                { countryId }
-            ]
-        }
-    }
-
-    if (keyword) {
-        query.where.name = {
-            [Op.like]: `%${keyword}%`
-        }
-    }
-
-    const { count, rows } = await House.findAndCountAll(query)
+    const { count, rows } = await Module.findAndCountAll(query)
 
     ctx.body = success({
         list: rows,
@@ -42,26 +29,26 @@ export const list = async (ctx, next) => {
 export const detail = async (ctx, next) => {
     const { id } = ctx.params
 
-    const house = await House.findByPk(id)
-    ctx.body = success(house)
+    const res = await Module.findByPk(id)
+    ctx.body = success(res)
 }
 
 export const create = async (ctx, next) => {
     const { body } = ctx.request
-    const house = await House.create(body)
-    ctx.body = success(house)
+    const res = await Module.create(body)
+    ctx.body = success(res)
 }
 
 export const update = async (ctx, next) => {
     const { id } = ctx.params
     const { body } = ctx.request
-    const house = await House.update(body, {
+    const res = await Module.update(body, {
         where:  {
             id
         }
     })
 
-    ctx.body = success(house)
+    ctx.body = success(res)
 }
 
 
