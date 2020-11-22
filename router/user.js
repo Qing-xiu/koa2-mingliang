@@ -1,13 +1,13 @@
 import Router from 'koa-router'
-import { getDetail, getList, create, update, } from '../controllers/user.js'
+import { detail, list, create, update, } from '../controllers/user.js'
 
 const router = new Router({
     prefix: '/user'
 })
 
-router.get('/', getList)
+router.get('/', list)
 router.post('/', create)
-router.get('/:id', getDetail)
+router.get('/:id', detail)
 router.put('/:id', update)
 
 export default router
